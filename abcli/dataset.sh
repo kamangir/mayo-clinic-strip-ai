@@ -36,11 +36,15 @@ function mcsai_dataset() {
 
             kaggle competitions download -c mayo-clinic-strip-ai -f $object_name
 
-            unzip $filename.zip
-            rm $filename.zip
+            if [ -f "$filename.zip" ] ; then
+                unzip $filename.zip
+                rm $filename.zip
+            fi
 
-            mkdir -p $filepath
-            mv -v $filename $filepath/$filename
+            if [ -z "$filepath" ] ; then
+                mkdir -p $filepath
+                mv -v $filename $filepath/$filename
+            fi
         fi
 
         return
