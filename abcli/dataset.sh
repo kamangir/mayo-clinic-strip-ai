@@ -4,8 +4,8 @@ function mcsai_dataset() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
-        abcli_help_line "mcsai dataset download filename_1" \
-            "download filename_1 from mcsai dataset."
+        abcli_help_line "mcsai dataset download file_path_1" \
+            "download file_path_1 from mcsai dataset."
         abcli_help_line "mcsai dataset list [count=10]" \
             "list [first 10 files in] mcsai dataset."
 
@@ -17,7 +17,24 @@ function mcsai_dataset() {
     fi
 
     if [ "$task" == "download" ] ; then
-        kaggle competitions download -c mayo-clinic-strip-ai -f "$2"
+        local file_path="$2"
+        if [ -z "$file_path" ] ; then
+            abcli_log_error "-mcsai: dataset: download: missing file path."
+            return
+        fi
+
+        local filename=$(basename $file_path)
+        if [ -f "$abcli_object_path/$filename" ] ; then
+            abcli_log "mcsai: $filename already exists, skipping download."
+        else
+            abcli_log "mcsai: downloading $filename..."
+
+            kaggle competitions download -c mayo-clinic-strip-ai -f "$file_path"
+
+            unzip $filename.zip
+            rm $filename.zip
+        fi
+
         return
     fi
 
