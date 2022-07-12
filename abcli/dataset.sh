@@ -4,8 +4,8 @@ function mcsai_dataset() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
-        abcli_help_line "mcsai dataset download object_1" \
-            "download object_1 from mcsai dataset."
+        abcli_help_line "mcsai dataset download metadata/object_1" \
+            "download object_1/metadata from mcsai dataset."
         abcli_help_line "mcsai dataset list [count=10]" \
             "list [first 10 files in] mcsai dataset."
 
@@ -24,6 +24,13 @@ function mcsai_dataset() {
         fi
         if [ "$(abcli_keyword_is $object_name validate)" == true ] ; then
             local object_name="other/04414e_0.tif"
+        fi
+        if [ "$(abcli_keyword_is $object_name metadata)" == true ] ; then
+            local object_name
+            for object_name in other.csv sample_submission.csv test.csv train.csv ; do
+                mcsai_dataset download $object_name
+            done
+            return
         fi
 
         local filename=$(basename $object_name)
