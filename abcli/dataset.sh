@@ -4,6 +4,8 @@ function mcsai_dataset() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
+        abcli_help_line "mcsai dataset download filename_1" \
+            "download filename_1 from mcsai dataset."
         abcli_help_line "mcsai dataset list" \
             "list mcsai dataset."
 
@@ -11,6 +13,11 @@ function mcsai_dataset() {
             python3 -m mayo_clinic_strip_ai.dataset --help
         fi
 
+        return
+    fi
+
+    if [ "$task" == "download" ] ; then
+        kaggle competitions download -c mayo-clinic-strip-ai -f "$2"
         return
     fi
 
