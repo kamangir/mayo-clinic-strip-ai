@@ -19,19 +19,20 @@ function mcsai_dataset() {
     if [ "$task" == "download" ] ; then
         local object_name="$2"
         if [ -z "$object_name" ] ; then
-            abcli_log_error "-mcsai: dataset: download: missing file path."
+            abcli_log_error "-mcsai: dataset: download: missing object."
             return
         fi
         if [ "$(abcli_keyword_is $object_name validate)" == true ] ; then
-            local $object_name="other/04414e_0.tif"
+            local object_name="other/04414e_0.tif"
         fi
 
         local filename=$(basename $object_name)
         local filepath=$(dirname $object_name)
-        if [ -f "$abcli_object_path/$filename" ] ; then
-            abcli_log "mcsai: $filename already exists, skipping download."
+
+        if [ -f "$abcli_object_path/$filepath/$filename" ] ; then
+            abcli_log "mcsai: $filepath/$filename already exists, skipping download."
         else
-            abcli_log "mcsai: downloading $filename..."
+            abcli_log "mcsai: downloading $filepath/$filename..."
 
             kaggle competitions download -c mayo-clinic-strip-ai -f $object_name
 
