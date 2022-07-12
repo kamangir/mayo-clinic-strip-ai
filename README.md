@@ -6,8 +6,8 @@
 mcsai help
 ```
 ```
-mcsai dataset download object_1
- . download object_1 from mcsai dataset.
+mcsai dataset download metadata/object_1
+ . download object_1/metadata from mcsai dataset.
 mcsai dataset list [count=10]
  . list [first 10 files in] mcsai dataset.
 mcsai install
