@@ -1,13 +1,15 @@
 #! /usr/bin/env bash
 
-function mcsai() {
-    mayo_clinic_strip_ai $@
+function mayo_clinic_strip_ai() {
+    mcsai $@
 }
 
-function mayo_clinic_strip_ai() {
+function mcsai() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
+        mcsai_dataset $@
+
         abcli_help_line "mcsai install" \
             "install mcsai."
         abcli_help_line "mcsai validate" \
@@ -17,6 +19,11 @@ function mayo_clinic_strip_ai() {
             python3 -m mayo_clinic_strip_ai --help
         fi
 
+        return
+    fi
+
+    if [[ $(type -t mcsai_$task) == "function" ]] ; then
+        mcsai_$task ${@:2}
         return
     fi
 
@@ -36,5 +43,5 @@ function mayo_clinic_strip_ai() {
         return
     fi
 
-    abcli_log_error "-mayo_clinic_strip_ai: $task: command not found."
+    abcli_log_error "-mcsai: $task: command not found."
 }
