@@ -58,7 +58,7 @@ function mcsai_dataset() {
     fi
 
     if [ "$task" == "list" ] ; then
-        local options="$2"
+        local options=$2
         local count=$(abcli_option_int "$options" "count" 99999)
 
         kaggle competitions \
