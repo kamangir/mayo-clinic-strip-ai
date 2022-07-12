@@ -21,7 +21,10 @@ function mayo_clinic_strip_ai() {
     fi
 
     if [ "$task" == "install" ] ; then
-        conda install -y -c conda-forge openslide
+        if [ "$abcli_is_mac" == true ] ; then
+            # https://openslide.org/api/python/
+            brew install openslide
+        fi
         return
     fi
 
