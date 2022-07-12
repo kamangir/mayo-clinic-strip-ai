@@ -38,7 +38,7 @@ mcsai dataset list count=10
 then download a few of them:
 
 ```
-abc sel
+abcli select
 mcsai dataset download other/04414e_0.tif
 mcsai dataset download other/06556e_0.tif
 ```
