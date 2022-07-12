@@ -43,7 +43,6 @@ then download a few of them:
 abcli select
 mcsai dataset download metadata
 mcsai dataset download other/04414e_0.tif
-mcsai dataset download train/006388_0.tif
 mcsai notebook open
 ```
 

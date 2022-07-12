@@ -45,7 +45,7 @@ def read_region(
         return False, None
 
     if plot_level > PLOT_ON:
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(20, 20))
         plt.imshow(image)
         plt.axis("off")
         plt.show()
