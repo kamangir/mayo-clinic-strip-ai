@@ -22,6 +22,9 @@ function mcsai_dataset() {
             abcli_log_error "-mcsai: dataset: download: missing file path."
             return
         fi
+        if [ "$(abcli_keyword_is $file_path validate)" == true ] ; then
+            local $file_path="other/04414e_0.tif"
+        fi
 
         local filename=$(basename $file_path)
         if [ -f "$abcli_object_path/$filename" ] ; then
