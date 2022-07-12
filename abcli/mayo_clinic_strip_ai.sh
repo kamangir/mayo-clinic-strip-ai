@@ -30,7 +30,9 @@ function mayo_clinic_strip_ai() {
     fi
 
     if [ "$task" == "validate" ] ; then
-        python3 -c "from openslide import OpenSlide"
+        python3 -m mayo_clinic_strip_ai \
+            validate \
+            ${@:2}
         return
     fi
 
