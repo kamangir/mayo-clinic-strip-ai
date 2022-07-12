@@ -6,12 +6,14 @@
 mcsai help
 ```
 ```
-mcsai dataset download filename_1
- . download filename_1 from mcsai dataset.
+mcsai dataset download object_1
+ . download object_1 from mcsai dataset.
 mcsai dataset list [count=10]
  . list [first 10 files in] mcsai dataset.
 mcsai install
  . install mcsai.
+mcsai notebook open
+ . open mcsai notebook.
 mcsai validate
  . validate mcsai.
 ```
@@ -42,7 +44,7 @@ abcli select
 mcsai dataset download validate
 mcsai dataset download other/04414e_0.tif
 mcsai dataset download other/06556e_0.tif
-mcsai notebook browse
+mcsai notebook open
 ```
 
 ![image](abcli/assets/example1.png)
