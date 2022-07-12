@@ -7,7 +7,7 @@ function mcsai_dataset() {
         abcli_help_line "mcsai dataset download filename_1" \
             "download filename_1 from mcsai dataset."
         abcli_help_line "mcsai dataset list [count=10]" \
-            "list [first 10 items in] mcsai dataset."
+            "list [first 10 files in] mcsai dataset."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
             python3 -m mayo_clinic_strip_ai.dataset --help

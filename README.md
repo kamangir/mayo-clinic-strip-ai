@@ -8,8 +8,8 @@ mcsai help
 ```
 mcsai dataset download filename_1
  . download filename_1 from mcsai dataset.
-mcsai dataset list
- . list mcsai dataset.
+mcsai dataset list [count=10]
+ . list [first 10 files in] mcsai dataset.
 mcsai install
  . install mcsai.
 mcsai validate
