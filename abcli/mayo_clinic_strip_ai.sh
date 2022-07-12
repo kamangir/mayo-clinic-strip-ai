@@ -21,7 +21,7 @@ function mayo_clinic_strip_ai() {
     fi
 
     if [ "$task" == "install" ] ; then
-        conda install -c conda-forge openslide
+        conda install -y -c conda-forge openslide
         return
     fi
 
