@@ -24,6 +24,7 @@ function mayo_clinic_strip_ai() {
         if [ "$abcli_is_mac" == true ] ; then
             # https://openslide.org/api/python/
             brew install openslide
+            python3 -m pip install openslide-python
         fi
         return
     fi
