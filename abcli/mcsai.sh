@@ -12,6 +12,9 @@ function mcsai() {
 
         abcli_help_line "mcsai install" \
             "install mcsai."
+
+        mcsai_notebook $@
+
         abcli_help_line "mcsai validate" \
             "validate mcsai."
 
