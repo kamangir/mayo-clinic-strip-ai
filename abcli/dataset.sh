@@ -10,7 +10,7 @@ function mcsai_dataset() {
             "list [first 10 files in] mcsai dataset."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
-            python3 -m mayo_clinic_strip_ai.dataset --help
+            python3 -m mcsai.dataset --help
         fi
 
         return

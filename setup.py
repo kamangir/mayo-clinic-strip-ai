@@ -1,6 +1,6 @@
 from setuptools import setup
 
-from mayo_clinic_strip_ai import *
+from mcsai import *
 
 setup(
     name=name,

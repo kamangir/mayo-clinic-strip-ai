@@ -19,7 +19,7 @@ function mcsai() {
             "validate mcsai."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
-            python3 -m mayo_clinic_strip_ai --help
+            python3 -m mcsai --help
         fi
 
         return
@@ -40,7 +40,7 @@ function mcsai() {
     fi
 
     if [ "$task" == "validate" ] ; then
-        python3 -m mayo_clinic_strip_ai \
+        python3 -m mcsai \
             validate \
             ${@:2}
         return
