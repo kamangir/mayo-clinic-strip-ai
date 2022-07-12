@@ -41,7 +41,7 @@ then download a few of them:
 
 ```
 abcli select
-mcsai dataset download validate
+mcsai dataset download metadata
 mcsai dataset download other/04414e_0.tif
 mcsai dataset download other/06556e_0.tif
 mcsai notebook open
