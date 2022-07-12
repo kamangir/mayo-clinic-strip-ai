@@ -48,7 +48,7 @@ function mcsai_dataset() {
                 rm $filename.zip
             fi
 
-            if [ -z "$filepath" ] ; then
+            if [ "$filepath" != "." ] ; then
                 mkdir -p $filepath
                 mv -v $filename $filepath/$filename
             fi
