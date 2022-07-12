@@ -1,5 +1,5 @@
 name = "mayo_clinic_strip_ai"
 
-version = "1.1.42"
+version = "1.1.48"
 
 description = "Mayo Clinic - STRIP AI"

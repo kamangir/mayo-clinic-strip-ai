@@ -6,8 +6,8 @@ function mcsai_dataset() {
     if [ $task == "help" ] ; then
         abcli_help_line "mcsai dataset download filename_1" \
             "download filename_1 from mcsai dataset."
-        abcli_help_line "mcsai dataset list" \
-            "list mcsai dataset."
+        abcli_help_line "mcsai dataset list [count=10]" \
+            "list [first 10 items in] mcsai dataset."
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
             python3 -m mayo_clinic_strip_ai.dataset --help
@@ -22,7 +22,13 @@ function mcsai_dataset() {
     fi
 
     if [ "$task" == "list" ] ; then
-        kaggle competitions files -c mayo-clinic-strip-ai
+        local options="$2"
+        local count=$(abcli_option_int "$options" "count" 99999)
+
+        kaggle competitions \
+            files \
+            -c mayo-clinic-strip-ai | head -n $(python3 -c "print($count+2)")
+
         return
     fi
 
