@@ -4,8 +4,8 @@ function mcsai_dataset() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
-        abcli_help_line "mcsai dataset download file_path_1" \
-            "download file_path_1 from mcsai dataset."
+        abcli_help_line "mcsai dataset download object_1" \
+            "download object_1 from mcsai dataset."
         abcli_help_line "mcsai dataset list [count=10]" \
             "list [first 10 files in] mcsai dataset."
 
@@ -17,25 +17,29 @@ function mcsai_dataset() {
     fi
 
     if [ "$task" == "download" ] ; then
-        local file_path="$2"
-        if [ -z "$file_path" ] ; then
+        local object_name="$2"
+        if [ -z "$object_name" ] ; then
             abcli_log_error "-mcsai: dataset: download: missing file path."
             return
         fi
-        if [ "$(abcli_keyword_is $file_path validate)" == true ] ; then
-            local $file_path="other/04414e_0.tif"
+        if [ "$(abcli_keyword_is $object_name validate)" == true ] ; then
+            local $object_name="other/04414e_0.tif"
         fi
 
-        local filename=$(basename $file_path)
+        local filename=$(basename $object_name)
+        local filepath=$(dirname $object_name)
         if [ -f "$abcli_object_path/$filename" ] ; then
             abcli_log "mcsai: $filename already exists, skipping download."
         else
             abcli_log "mcsai: downloading $filename..."
 
-            kaggle competitions download -c mayo-clinic-strip-ai -f "$file_path"
+            kaggle competitions download -c mayo-clinic-strip-ai -f $object_name
 
             unzip $filename.zip
             rm $filename.zip
+
+            mkdir -p $filepath
+            mv -v $filename $filepath/$filename
         fi
 
         return
